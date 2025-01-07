@@ -8,5 +8,5 @@ public interface ITaskService {
 
     Task findById(String id);
 
-    void delete(Task task);
+    void deleteById(String id);
 }

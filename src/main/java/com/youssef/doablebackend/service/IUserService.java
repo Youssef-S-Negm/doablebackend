@@ -8,5 +8,5 @@ public interface IUserService {
 
     User findById(String id);
 
-    void delete(User user);
+    void deleteById(String id);
 }
