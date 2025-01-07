@@ -41,7 +41,7 @@ public class TaskService implements ITaskService {
 
     @Override
     @Transactional
-    public void deleteById(String id) {
+    public void deleteById(String id) throws TaskNotFoundException {
         Optional<Task> result = taskRepository.findById(id);
 
         if (result.isEmpty()) throw new TaskNotFoundException("Task id - " + id + " not found");
@@ -51,7 +51,7 @@ public class TaskService implements ITaskService {
 
     @Override
     @Transactional
-    public void updateStatusById(String id, String status) {
+    public void updateStatusById(String id, String status) throws TaskNotFoundException {
         Optional<Task> result = taskRepository.findById(id);
 
         if (result.isEmpty()) throw new TaskNotFoundException("Task id - " + id + " not found");
@@ -62,7 +62,7 @@ public class TaskService implements ITaskService {
 
     @Override
     @Transactional
-    public void addTaskToUser(String id, Task task) {
+    public void addTaskToUser(String id, Task task) throws UserNotFoundException {
         Optional<User> result = userRepository.findById(id);
 
         if (result.isEmpty()) throw new UserNotFoundException("User id - " + id + " not found");
