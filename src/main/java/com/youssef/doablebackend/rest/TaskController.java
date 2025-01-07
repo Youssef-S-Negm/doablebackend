@@ -39,4 +39,18 @@ public class TaskController {
 
         return ResponseEntity.ok("task deleted successfully");
     }
+
+    @PutMapping("/done/{id}")
+    public ResponseEntity<String> updateStatusToDone(@PathVariable String id) {
+        taskService.updateStatusById(id, "done");
+
+        return ResponseEntity.ok("task id - " + id + " status updated to done");
+    }
+
+    @PutMapping("/pending/{id}")
+    public ResponseEntity<String> updateStatusToPending(@PathVariable String id) {
+        taskService.updateStatusById(id, "pending");
+
+        return ResponseEntity.ok("task id - " + id + " status updated to pending");
+    }
 }
