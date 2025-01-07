@@ -1,0 +1,42 @@
+package com.youssef.doablebackend.rest;
+
+import com.youssef.doablebackend.entity.Task;
+import com.youssef.doablebackend.service.ITaskService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/tasks")
+public class TaskController {
+
+    private ITaskService taskService;
+
+    @Autowired
+    public TaskController(ITaskService taskService) {
+        this.taskService = taskService;
+    }
+
+    @PostMapping
+    public ResponseEntity<String> addTask(@RequestBody Task task) {
+        taskService.save(task);
+
+        return new ResponseEntity<>("task created successfully", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTask(@PathVariable String id) {
+        Task task = taskService.findById(id);
+
+        return ResponseEntity.ok(task);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTask(@PathVariable String id) {
+        taskService.deleteById(id);
+
+        return ResponseEntity.ok("task deleted successfully");
+    }
+}
