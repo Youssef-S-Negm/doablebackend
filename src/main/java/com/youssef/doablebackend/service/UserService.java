@@ -36,7 +36,11 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public void delete(User user) {
-        userRepository.delete(user);
+    public void deleteById(String id) {
+        Optional<User> result = userRepository.findById(id);
+
+        if (result.isEmpty()) throw new UserNotFoundException("User id - " + id + " not found");
+
+        userRepository.delete(result.get());
     }
 }
