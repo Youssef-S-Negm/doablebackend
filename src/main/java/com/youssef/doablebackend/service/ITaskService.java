@@ -9,4 +9,6 @@ public interface ITaskService {
     Task findById(String id);
 
     void deleteById(String id);
+
+    void updateStatusById(String id, String status);
 }

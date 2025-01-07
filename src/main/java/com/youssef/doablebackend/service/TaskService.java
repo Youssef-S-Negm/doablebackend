@@ -43,4 +43,15 @@ public class TaskService implements ITaskService {
 
         taskRepository.delete(result.get());
     }
+
+    @Override
+    @Transactional
+    public void updateStatusById(String id, String status) {
+        Optional<Task> result = taskRepository.findById(id);
+
+        if (result.isEmpty()) throw new TaskNotFoundException("Task id - " + id + " not found");
+
+        result.get().setStatus(status);
+        taskRepository.save(result.get());
+    }
 }
