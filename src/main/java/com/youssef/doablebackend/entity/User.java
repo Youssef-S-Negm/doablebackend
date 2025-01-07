@@ -1,10 +1,14 @@
 package com.youssef.doablebackend.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-@Document("users")
+import java.util.List;
+
+@Document(collection = "users")
 public class User {
 
     @Id
@@ -14,6 +18,10 @@ public class User {
 
     @Indexed(unique = true)
     private String email;
+
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'userId':?#{#self._id.toString()} }")
+    List<Task> tasks;
 
     public User() {
     }
@@ -54,6 +62,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

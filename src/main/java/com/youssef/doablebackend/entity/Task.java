@@ -3,7 +3,7 @@ package com.youssef.doablebackend.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("tasks")
+@Document(collection = "tasks")
 public class Task {
 
     @Id
