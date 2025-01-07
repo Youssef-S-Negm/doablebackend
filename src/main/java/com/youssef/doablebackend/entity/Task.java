@@ -8,13 +8,20 @@ public class Task {
 
     @Id
     private String id;
-    private String status;
-    private int userId;
+    private String title;
+    private String status = "pending";
+    private String userId;
 
     public Task() {
     }
 
-    public Task(String status, int userId) {
+    public Task(String userId, String title) {
+        this.userId = userId;
+        this.title = title;
+    }
+
+    public Task(String title, String status, String userId) {
+        this.title = title;
         this.status = status;
         this.userId = userId;
     }
@@ -27,6 +34,14 @@ public class Task {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -35,11 +50,11 @@ public class Task {
         this.status = status;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
