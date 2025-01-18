@@ -38,10 +38,10 @@ REST APIs to manage users and tasks efficiently, ensuring a smooth experience fo
 
 ### User authentication
 
-| Method | URL            | Body                                                                                      | Description                                                             |
-|--------|----------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| `POST` | `/auth/signUp` | `{"firstName": "string", "lastName": "string", "email": "string", "password": "string",}` | Register user and return user metadata.                                 |
-| `POST` | `/auth/login`  | `{"email": "string", "password": "string"}`                                               | Generate token and return user metadata, JWT, and JWT expiration in ms. |
+| Method | URL            | Body                                                                                     | Description                                                             |
+|--------|----------------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `POST` | `/auth/signUp` | `{"firstName": "string", "lastName": "string", "email": "string", "password": "string"}` | Register user and return user metadata.                                 |
+| `POST` | `/auth/login`  | `{"email": "string", "password": "string"}`                                              | Generate token and return user metadata, JWT, and JWT expiration in ms. |
 
 ### Task management
 
