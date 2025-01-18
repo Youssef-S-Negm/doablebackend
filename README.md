@@ -2,13 +2,13 @@
 
 ## Introduction
 
-The backend for the Doable task management app is built using Java Spring Boot and MongoDB. This project provides
-RESTful APIs to manage users and tasks efficiently, ensuring a smooth experience for task tracking and management.
+The backend for the Doable task management app is built using **Java Spring Boot** and **MongoDB**. This project provides
+REST APIs to manage users and tasks efficiently, ensuring a smooth experience for task tracking and management.
 
 ## Features
 
-- Add, get and delete users by ID.
-- Add, get, update, delete tasks by ID.
+- Register and authenticate users using JWT.
+- Add, get, update, and delete tasks by ID.
 
 ## Getting Started
 
@@ -36,20 +36,22 @@ RESTful APIs to manage users and tasks efficiently, ensuring a smooth experience
 
 ## API Endpoints
 
-### User management
+### User authentication
 
-| Method   | URL           | Description                 |
-|----------|---------------|-----------------------------|
-| `POST`   | `/users`      | Add a user                  |
-| `GET`    | `/users/{id}` | Retrieve user details by ID |
-| `DELETE` | `/users/{id}` | Delete user by ID           |
+| Method | URL            | Body                                                                                      | Description                                                             |
+|--------|----------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `POST` | `/auth/signUp` | `{"firstName": "string", "lastName": "string", "email": "string", "password": "string",}` | Register user and return user metadata.                                 |
+| `POST` | `/auth/login`  | `{"email": "string", "password": "string"}`                                               | Generate token and return user metadata, JWT, and JWT expiration in ms. |
 
 ### Task management
 
-| Method   | URL                      | Description                     |
-|----------|--------------------------|---------------------------------|
-| `POST`   | `/tasks?userId={userId}` | Add a task to a specific user   |
-| `GET`    | `/tasks/{id}`            | Retrieve task by ID             |
-| `DELETE` | `/task/{id}`             | Delete task by ID               |
-| `PUT`    | `/tasks/done/{id}`       | Update task status to "done"    |
-| `PUT`    | `/tasks/pending/{id}`    | Update task status to "pending" |       
+| Method   | URL                   | Body                  | Description                     |
+|----------|-----------------------|-----------------------|---------------------------------|
+| `POST`   | `/tasks`              | `{"title": "string"}` | Add a task to a specific user   |
+| `GET`    | `/tasks/{id}`         | None                  | Retrieve task by ID             |
+| `DELETE` | `/task/{id}`          | None                  | Delete task by ID               |
+| `PUT`    | `/tasks/done/{id}`    | None                  | Update task status to "done"    |
+| `PUT`    | `/tasks/pending/{id}` | None                  | Update task status to "pending" |
+
+## Note
+JWT secret key and JWT expiration are included in the `application.properties` file for demonstration purpose only.

@@ -1,5 +1,6 @@
 package com.youssef.doablebackend.rest;
 
+import com.youssef.doablebackend.exception.NotUserTaskException;
 import com.youssef.doablebackend.exception.TaskNotFoundException;
 import com.youssef.doablebackend.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -41,5 +42,16 @@ public class ErrorHandler {
         err.setTimelapse(System.currentTimeMillis());
 
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleNotUserTask(NotUserTaskException exception) {
+        ErrorResponse err = new ErrorResponse();
+
+        err.setStatus(HttpStatus.FORBIDDEN.value());
+        err.setMessage(exception.getMessage());
+        err.setTimelapse(System.currentTimeMillis());
+
+        return new ResponseEntity<>(err, HttpStatus.FORBIDDEN);
     }
 }
