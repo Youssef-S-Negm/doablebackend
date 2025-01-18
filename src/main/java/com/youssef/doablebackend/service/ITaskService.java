@@ -11,6 +11,4 @@ public interface ITaskService {
     void deleteById(String id);
 
     void updateStatusById(String id, String status);
-
-    void addTaskToUser(String id, Task task);
 }
