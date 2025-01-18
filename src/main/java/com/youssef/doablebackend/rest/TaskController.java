@@ -20,8 +20,9 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addTask(@RequestBody Task task, @RequestParam("userId") String id) {
-        taskService.addTaskToUser(id, task);
+    public ResponseEntity<String> addTask(@RequestBody Task task) {
+        taskService.save(task);
+
         return new ResponseEntity<>("task created successfully", HttpStatus.CREATED);
     }
 
