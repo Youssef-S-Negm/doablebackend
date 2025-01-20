@@ -35,6 +35,7 @@ REST APIs to manage users and tasks efficiently, ensuring a smooth experience fo
     ```
 
 ## API Endpoints
+The base URL will be `http://localhost:3000`.
 
 ### User authentication
 
@@ -54,4 +55,4 @@ REST APIs to manage users and tasks efficiently, ensuring a smooth experience fo
 | `PUT`    | `/tasks/pending/{id}` | None                  | Update task status to "pending" |
 
 ## Note
-JWT secret key and JWT expiration are included in the `application.properties` file for demonstration purpose only.
+JWT secret key and JWT expiration are included in the `application.properties` file for demonstration purposes only.
